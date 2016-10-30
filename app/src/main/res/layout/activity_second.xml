@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_buletooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="蓝牙自动配对" />
+
+    <Button
+        android:id="@+id/btn_muiltdownload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="多线程断点下载" />
+
+    <Button
+        android:id="@+id/btn_verticalscroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="纵向跑马灯(仿淘宝、京东效果)" />
+
+</LinearLayout>
