@@ -37,7 +37,7 @@ public class SecondActivity extends Activity {
         }
     }
 
-    @OnClick({R.id.btn_buletooth, R.id.btn_muiltdownload, R.id.btn_verticalscroll})
+    @OnClick({R.id.btn_buletooth, R.id.btn_muiltdownload, R.id.btn_verticalscroll,R.id.btn_polygon})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_buletooth:
@@ -50,6 +50,10 @@ public class SecondActivity extends Activity {
             case R.id.btn_verticalscroll:
                 Intent verticalScrollIntent = new Intent(SecondActivity.this, VerticalScrollActivity.class);
                 startActivity(verticalScrollIntent);
+                break;
+            case R.id.btn_polygon:
+                Intent polygonItent = new Intent(SecondActivity.this, PolygonActivity.class);
+                startActivity(polygonItent);
                 break;
         }
     }

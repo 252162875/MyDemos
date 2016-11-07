@@ -56,6 +56,7 @@
 
         <activity android:name=".MuiltDownLoadActivity" />
         <activity android:name=".VerticalScrollActivity"></activity>
+        <activity android:name=".PolygonActivity"></activity>
     </application>
 
 </manifest>
