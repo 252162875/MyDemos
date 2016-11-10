@@ -29,5 +29,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="多边形（数据统计）" />
+    <Button
+        android:id="@+id/btn_watch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="表盘" />
 
 </LinearLayout>
