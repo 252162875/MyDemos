@@ -6,9 +6,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import java.util.Calendar;
 
 import kx.rnd.com.permissionstest.R;
 import kx.rnd.com.permissionstest.utils.SizeUtil;
@@ -64,6 +67,7 @@ public class WatchView extends View {
 
             mColorLong = array.getColor(R.styleable.WatchView_wv_scale_long_color, Color.argb(225, 0, 0, 0));
             mColorShort = array.getColor(R.styleable.WatchView_wv_scale_short_color, Color.argb(125, 0, 0, 0));
+            mHourPointColor = array.getColor(R.styleable.WatchView_wv_hour_pointer_color, Color.BLACK);
             mMinutePointColor = array.getColor(R.styleable.WatchView_wv_minute_pointer_color, Color.BLACK);
             mSecondPointColor = array.getColor(R.styleable.WatchView_wv_second_pointer_color, Color.RED);
         } catch (Exception e) {
@@ -78,6 +82,7 @@ public class WatchView extends View {
 
             mColorLong = Color.argb(225, 0, 0, 0);
             mColorShort = Color.argb(125, 0, 0, 0);
+            mHourPointColor = Color.BLACK;
             mMinutePointColor = Color.BLACK;
             mSecondPointColor = Color.RED;
         } finally {
@@ -131,8 +136,13 @@ public class WatchView extends View {
         canvas.translate(getWidth() / 2, getHeight() / 2);
         //绘制外圆背景
         paintCircle(canvas);
+        //绘制刻度
         paintScale(canvas);
+        //绘制指针
+        paintPointer(canvas);
         canvas.restore();
+        //每秒刷新
+        postInvalidateDelayed(1000);
     }
 
     //绘制外圆背景
@@ -173,6 +183,50 @@ public class WatchView extends View {
             canvas.drawLine(0, -mRadius + SizeUtil.Dp2Px(getContext(), 10), 0, -mRadius + SizeUtil.Dp2Px(getContext(), 10) + lineWidth, mPaint);//X方向没有改变，Y方向上向上绘制10dp长度
             canvas.rotate(6);//在for循环里面每次画线完就旋转360/60 = 6 度
         }
+    }
+
+    //绘制指针
+    private void paintPointer(Canvas canvas) {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY); //时
+        int minute = calendar.get(Calendar.MINUTE); //分
+        int second = calendar.get(Calendar.SECOND); //秒
+        int angleHour = (hour % 12) * 360 / 12; //时针转过的角度
+        int angleMinute = minute * 360 / 60; //分针转过的角度
+        int angleSecond = second * 360 / 60; //秒针转过的角度
+        //绘制时针
+        canvas.save();
+        canvas.rotate(angleHour); //旋转到时针的角度
+        RectF rectFHour = new RectF(-mHourPointWidth / 2, -mRadius * 3 / 5, mHourPointWidth / 2, mPointEndLength);
+        mPaint.setColor(mHourPointColor); //设置指针颜色
+       /* 画笔样式分三种：
+        1.Paint.Style.STROKE：描边
+        2.Paint.Style.FILL_AND_STROKE：描边并填充
+        3.Paint.Style.FILL：填充*/
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(mHourPointWidth); //设置边界宽度
+        canvas.drawRoundRect(rectFHour, mPointRadius, mPointRadius, mPaint); //绘制时针
+        canvas.restore();
+        //绘制分针
+        canvas.save();
+        canvas.rotate(angleMinute);
+        RectF rectFMinute = new RectF(-mMinutePointWidth / 2, -mRadius * 3.5f / 5, mMinutePointWidth / 2, mPointEndLength);
+        mPaint.setColor(mMinutePointColor);
+        mPaint.setStrokeWidth(mMinutePointWidth);
+        canvas.drawRoundRect(rectFMinute, mPointRadius, mPointRadius, mPaint);
+        canvas.restore();
+        //绘制秒针
+        canvas.save();
+        canvas.rotate(angleSecond);
+        RectF rectFSecond = new RectF(-mSecondPointWidth / 2, -mRadius + 15, mSecondPointWidth / 2, mPointEndLength);
+        mPaint.setColor(mSecondPointColor);
+        mPaint.setStrokeWidth(mSecondPointWidth);
+        canvas.drawRoundRect(rectFSecond, mPointRadius, mPointRadius, mPaint);
+        canvas.restore();
+        //绘制中心小圆
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(mSecondPointColor);
+        canvas.drawCircle(0, 0, mSecondPointWidth * 4, mPaint);
     }
 
     //Dp转px
