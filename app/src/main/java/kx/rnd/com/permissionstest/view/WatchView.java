@@ -191,9 +191,9 @@ public class WatchView extends View {
         int hour = calendar.get(Calendar.HOUR_OF_DAY); //时
         int minute = calendar.get(Calendar.MINUTE); //分
         int second = calendar.get(Calendar.SECOND); //秒
-        int angleHour = (hour % 12) * 360 / 12; //时针转过的角度
-        int angleMinute = minute * 360 / 60; //分针转过的角度
         int angleSecond = second * 360 / 60; //秒针转过的角度
+        int angleMinute = minute * 360 / 60 + (second / 10); //分针转过的角度(每10秒走1度)
+        int angleHour = (hour % 12) * 360 / 12 + (minute / 2); //时针转过的角度(每2分钟走1度)
         //绘制时针
         canvas.save();
         canvas.rotate(angleHour); //旋转到时针的角度
