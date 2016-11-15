@@ -37,7 +37,7 @@ public class SecondActivity extends Activity {
         }
     }
 
-    @OnClick({R.id.btn_buletooth, R.id.btn_muiltdownload, R.id.btn_verticalscroll, R.id.btn_polygon, R.id.btn_watch})
+    @OnClick({R.id.btn_buletooth, R.id.btn_muiltdownload, R.id.btn_verticalscroll, R.id.btn_polygon, R.id.btn_watch, R.id.btn_behavior})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_buletooth:
@@ -52,12 +52,16 @@ public class SecondActivity extends Activity {
                 startActivity(verticalScrollIntent);
                 break;
             case R.id.btn_polygon:
-                Intent polygonItent = new Intent(SecondActivity.this, PolygonActivity.class);
-                startActivity(polygonItent);
+                Intent polygonIntent = new Intent(SecondActivity.this, PolygonActivity.class);
+                startActivity(polygonIntent);
                 break;
             case R.id.btn_watch:
-                Intent watchItent = new Intent(SecondActivity.this, WatchActivity.class);
-                startActivity(watchItent);
+                Intent watchIntent = new Intent(SecondActivity.this, WatchActivity.class);
+                startActivity(watchIntent);
+                break;
+            case R.id.btn_behavior:
+                Intent behaviorIntent = new Intent(SecondActivity.this, BehaviorActivity.class);
+                startActivity(behaviorIntent);
                 break;
         }
     }

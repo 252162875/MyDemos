@@ -33,4 +33,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     compile files('libs/AMap3DMap_3.4.0_AMapNavi_1.9.2_AMapSearch_3.4.0_AMapLocation_2.9.0_20160906.jar')
     compile project(':library')
+    compile 'com.android.support:design:25.0.0'
 }

@@ -9,44 +9,44 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_buletooth"
+            android:id="@+id/btn_behavior1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="蓝牙自动配对" />
+            android:text="测试01" />
 
         <Button
-            android:id="@+id/btn_muiltdownload"
+            android:id="@+id/btn_behavior2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="多线程断点下载" />
+            android:text="测试02" />
 
         <Button
-            android:id="@+id/btn_verticalscroll"
+            android:id="@+id/btn_behavior3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="纵向跑马灯(仿淘宝、京东效果)" />
+            android:text="测试03" />
 
         <Button
-            android:id="@+id/btn_polygon"
+            android:id="@+id/btn_behavior4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="多边形（数据统计）" />
+            android:text="测试04" />
 
         <Button
-            android:id="@+id/btn_watch"
+            android:id="@+id/btn_behavior5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="表盘" />
+            android:text="测试05" />
 
         <Button
-            android:id="@+id/btn_behavior"
+            android:id="@+id/btn_behavior6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="CoordinatorLayout自定义Behavior" />
+            android:text="测试06" />
     </LinearLayout>
 </ScrollView>
