@@ -17,8 +17,12 @@ public class BehaviorTestOneActivity extends AppCompatActivity {
     Button btn;
     private int titleBarHeight;
     private int statusBarHeight;
+    //以下两个值代表手指按下时控件的坐标
     float x = 0.0f;
     float y = 0.0f;
+    //以下两个值代表手指按下时手指的坐标
+    float xx = 0.0f;
+    float yy = 0.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +36,18 @@ public class BehaviorTestOneActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_DOWN:
                         x = v.getX();
                         y = v.getY();
+                        xx = event.getRawX();
+                        yy = event.getRawY();
                         Toast.makeText(BehaviorTestOneActivity.this, "x === " + x + "\n" + "y === " + y + "\n" + "event.getRawX() === " + event.getRawX() + "\n" + "event.getRawY() === " + event.getRawY(), Toast.LENGTH_LONG).show();
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        v.setX(event.getRawX() - x);
-                        v.setY(event.getRawY() - y - titleBarHeight - statusBarHeight);
+                        v.setX(event.getRawX() - Math.abs(xx - x));
+                        v.setY(event.getRawY() - Math.abs(yy - y) + v.getHeight() + v.getPaddingTop() - titleBarHeight - statusBarHeight);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x = v.getX();
+                        y = v.getY();
+                        Toast.makeText(BehaviorTestOneActivity.this, "x === " + x + "\n" + "y === " + y + "\n" + "event.getRawX() === " + event.getRawX() + "\n" + "event.getRawY() === " + event.getRawY(), Toast.LENGTH_LONG).show();
                         break;
                 }
                 return false;
