@@ -33,5 +33,12 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     compile files('libs/AMap3DMap_3.4.0_AMapNavi_1.9.2_AMapSearch_3.4.0_AMapLocation_2.9.0_20160906.jar')
     compile project(':library')
-    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:design:23.0.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.2.3'
 }

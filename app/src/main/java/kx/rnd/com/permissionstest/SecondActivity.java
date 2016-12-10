@@ -37,7 +37,7 @@ public class SecondActivity extends Activity {
         }
     }
 
-    @OnClick({R.id.btn_buletooth, R.id.btn_muiltdownload, R.id.btn_verticalscroll, R.id.btn_polygon, R.id.btn_watch, R.id.btn_behavior})
+    @OnClick({R.id.btn_buletooth, R.id.btn_muiltdownload, R.id.btn_verticalscroll, R.id.btn_polygon, R.id.btn_watch, R.id.btn_behavior, R.id.btn_okhttp_retrofit})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_buletooth:
@@ -62,6 +62,10 @@ public class SecondActivity extends Activity {
             case R.id.btn_behavior:
                 Intent behaviorIntent = new Intent(SecondActivity.this, BehaviorActivity.class);
                 startActivity(behaviorIntent);
+                break;
+            case R.id.btn_okhttp_retrofit:
+                Intent OkhtttpAndRetrofitIntent = new Intent(SecondActivity.this, OkhtttpAndRetrofitActivity.class);
+                startActivity(OkhtttpAndRetrofitIntent);
                 break;
         }
     }

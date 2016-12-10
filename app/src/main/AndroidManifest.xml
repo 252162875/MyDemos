@@ -55,11 +55,12 @@
         </receiver>
 
         <activity android:name=".MuiltDownLoadActivity" />
-        <activity android:name=".VerticalScrollActivity"></activity>
-        <activity android:name=".PolygonActivity"></activity>
-        <activity android:name=".WatchActivity"></activity>
-        <activity android:name=".BehaviorActivity"></activity>
-        <activity android:name=".BehaviorTestOneActivity"></activity>
+        <activity android:name=".VerticalScrollActivity" />
+        <activity android:name=".PolygonActivity" />
+        <activity android:name=".WatchActivity" />
+        <activity android:name=".BehaviorActivity" />
+        <activity android:name=".BehaviorTestOneActivity" />
+        <activity android:name=".OkhtttpAndRetrofitActivity"></activity>
     </application>
 
 </manifest>
