@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,8 @@ public class CollapsingToolbarTestActivity extends AppCompatActivity {
     AppBarLayout appbar;
     @BindView(R.id.ll_title)
     LinearLayout ll_title;
+    @BindView(R.id.iv_search)
+    ImageView iv_search;
     public String[] data = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
     @Override
@@ -81,26 +84,32 @@ public class CollapsingToolbarTestActivity extends AppCompatActivity {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
                 Log.d("STATE", state.name());
-                if( state == State.EXPANDED ) {
+                if (state == State.EXPANDED) {
                     //展开状态
                     Toast.makeText(CollapsingToolbarTestActivity.this, "展开状态", Toast.LENGTH_SHORT).show();
-                }else if(state == State.COLLAPSED){
+                } else if (state == State.COLLAPSED) {
                     //折叠状态
 //                    ll_title.setVisibility(View.VISIBLE);
                     Toast.makeText(CollapsingToolbarTestActivity.this, "折叠状态", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     //中间状态
 //                    ll_title.setVisibility(View.GONE);
                     Toast.makeText(CollapsingToolbarTestActivity.this, "中间状态", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        iv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CollapsingToolbarTestActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //使用CollapsingToolbarLayout必须把title设置到CollapsingToolbarLayout上，设置到Toolbar上则不会显示
-        mCollapsingToolbarLayout.setTitle("这是第"+1+"个页面");
+        mCollapsingToolbarLayout.setTitle("这是第" + 1 + "个页面");
         //通过CollapsingToolbarLayout修改字体颜色
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
-        mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255,64,129));//设置收缩后Toolbar上字体的颜色
+        mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 64, 129));//设置收缩后Toolbar上字体的颜色
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +125,7 @@ public class CollapsingToolbarTestActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                mCollapsingToolbarLayout.setTitle("这是第"+(position+1)+"个页面");
+                mCollapsingToolbarLayout.setTitle("这是第" + (position + 1) + "个页面");
             }
 
             @Override
