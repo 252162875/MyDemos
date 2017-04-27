@@ -121,5 +121,15 @@
         android:textSize="18sp"
         app:layout_behavior="kx.rnd.com.permissionstest.behavior.DrawerBehavior" />
 
+    <ImageView
+        android:id="@+id/iv_avator"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image"
+        app:finalHeight="50dp"
+        app:layout_behavior="kx.rnd.com.permissionstest.behavior.CustomBehavior" />
+
 
 </android.support.design.widget.CoordinatorLayout>
