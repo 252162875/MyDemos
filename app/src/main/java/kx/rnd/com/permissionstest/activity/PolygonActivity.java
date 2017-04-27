@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import android.widget.SeekBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import kx.rnd.com.permissionstest.R;
 import kx.rnd.com.permissionstest.view.PolygonView;
 
 public class PolygonActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {

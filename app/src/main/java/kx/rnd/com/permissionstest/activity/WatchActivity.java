@@ -1,9 +1,10 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
+import kx.rnd.com.permissionstest.R;
 
 public class WatchActivity extends AppCompatActivity {
 

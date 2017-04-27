@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,6 +22,7 @@ import java.net.URL;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kx.rnd.com.permissionstest.R;
 
 public class MuiltDownLoadActivity extends Activity {
     String defaultPath = "http://61.134.46.29/apk.r1.market.hiapk.com/data/upload/apkres/2016/10_27/16/com.motk_045303.apk";

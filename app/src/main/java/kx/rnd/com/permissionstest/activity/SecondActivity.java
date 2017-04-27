@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kx.rnd.com.permissionstest.R;
 
 public class SecondActivity extends Activity {
 

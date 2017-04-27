@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -27,6 +27,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kx.rnd.com.permissionstest.R;
 
 public class MainActivity extends Activity implements LocationSource {
     final public static int REQUEST_CODE_ASK_CALL_PHONE = 123;

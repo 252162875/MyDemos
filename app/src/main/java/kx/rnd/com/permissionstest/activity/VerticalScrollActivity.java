@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kx.rnd.com.permissionstest.R;
 import kx.rnd.com.permissionstest.view.VerticalMarqueeView;
 
 public class VerticalScrollActivity extends AppCompatActivity {

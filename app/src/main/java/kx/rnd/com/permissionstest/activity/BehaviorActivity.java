@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import kx.rnd.com.permissionstest.behavior.BehaviorTestOne;
+import kx.rnd.com.permissionstest.R;
 
 public class BehaviorActivity extends AppCompatActivity {
 
@@ -42,8 +42,12 @@ public class BehaviorActivity extends AppCompatActivity {
                 startActivity(behaviorIntent);
                 break;
             case R.id.btn_behavior2:
+                Intent toolBarTestIntent = new Intent(BehaviorActivity.this, ToolBarTestActivity.class);
+                startActivity(toolBarTestIntent);
                 break;
             case R.id.btn_behavior3:
+                Intent collapsingToolbarTestIntent = new Intent(BehaviorActivity.this, CollapsingToolbarTestActivity.class);
+                startActivity(collapsingToolbarTestIntent);
                 break;
             case R.id.btn_behavior4:
                 break;

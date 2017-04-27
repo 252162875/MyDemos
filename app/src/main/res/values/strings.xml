@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">PermissionsTest</string>
+    <string name="app_name">²º¹⁷・°☆</string>
+    <string name="myStr">由于用的是AppCompatActivity，当设置 setSupportActionBar(toolbar)的时候回报错，原因是AppCompatActivity有默认的actionbar，\n所以要在清单文件此activity下设置\n android:theme = style Theme.AppCompat.NoActionBar，\n 或者在主题里面设置\n item name=windowActionBar false item
+item name=windowNoTitle true item</string>
 </resources>

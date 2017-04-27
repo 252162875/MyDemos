@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kx.rnd.com.permissionstest.R;
 import kx.rnd.com.permissionstest.bean.DouBanBean;
 import kx.rnd.com.permissionstest.interfaces.DouBanService;
 import retrofit2.Call;

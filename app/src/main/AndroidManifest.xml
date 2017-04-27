@@ -35,7 +35,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="ca8bb1f6ca5873751c5e74f53cbfa1ef" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +45,7 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".activity.SecondActivity" />
 
         <receiver android:name=".receiver.BluetoothReceiver">
             <intent-filter android:priority="1000">
@@ -54,13 +54,19 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MuiltDownLoadActivity" />
-        <activity android:name=".VerticalScrollActivity" />
-        <activity android:name=".PolygonActivity" />
-        <activity android:name=".WatchActivity" />
-        <activity android:name=".BehaviorActivity" />
-        <activity android:name=".BehaviorTestOneActivity" />
-        <activity android:name=".OkhtttpAndRetrofitActivity"></activity>
+        <activity android:name=".activity.MuiltDownLoadActivity" />
+        <activity android:name=".activity.VerticalScrollActivity" />
+        <activity android:name=".activity.PolygonActivity" />
+        <activity android:name=".activity.WatchActivity" />
+        <activity android:name=".activity.BehaviorActivity" />
+        <activity android:name=".activity.BehaviorTestOneActivity" />
+        <activity android:name=".activity.OkhtttpAndRetrofitActivity" />
+        <activity
+            android:name=".activity.ToolBarTestActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".activity.CollapsingToolbarTestActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

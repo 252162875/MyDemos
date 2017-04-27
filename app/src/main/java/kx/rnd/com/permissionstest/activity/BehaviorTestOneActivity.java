@@ -1,4 +1,4 @@
-package kx.rnd.com.permissionstest;
+package kx.rnd.com.permissionstest.activity;
 
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import kx.rnd.com.permissionstest.R;
 
 public class BehaviorTestOneActivity extends AppCompatActivity {
     @BindView(R.id.btn)

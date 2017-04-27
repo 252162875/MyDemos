@@ -17,7 +17,7 @@
         android:id="@+id/btn_nextpage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="下一页" />
+        android:text="☀段²º¹⁷・°☆" />
 
     <com.amap.api.maps.MapView
         android:id="@+id/map"
