@@ -13,7 +13,7 @@ import android.util.Log;
 public class ClsUtils {
     /**
      * 与设备配对 参考源码：platform/packages/apps/Settings.git
-     * /Settings/src/com/android/settings/bluetooth/CachedBluetoothDevice.java
+     * /Settings/src/com/android/bird/bluetooth/CachedBluetoothDevice.java
      */
     static public boolean createBond(Class btClass, BluetoothDevice btDevice)
             throws Exception {
@@ -24,7 +24,7 @@ public class ClsUtils {
 
     /**
      * 与设备解除配对 参考源码：platform/packages/apps/Settings.git
-     * /Settings/src/com/android/settings/bluetooth/CachedBluetoothDevice.java
+     * /Settings/src/com/android/bird/bluetooth/CachedBluetoothDevice.java
      */
     static public boolean removeBond(Class<?> btClass, BluetoothDevice btDevice)
             throws Exception {
