@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.eftimoff.androipathview.PathView;
 import com.jrummyapps.android.widget.AnimatedSvgView;
@@ -45,12 +46,23 @@ public class SvgTestActivity extends AppCompatActivity {
         });
         pathView.useNaturalColors();
         pathView.setFillAfter(true);
-        pathView.getPathAnimator().
+        pathView.getPathAnimator().listenerStart(new PathView.AnimatorBuilder.ListenerStart() {
+            @Override
+            public void onAnimationStart() {
+                Toast.makeText(SvgTestActivity.this, "pathView动画开始", Toast.LENGTH_SHORT).show();
+            }
+        }).listenerEnd(new PathView.AnimatorBuilder.ListenerEnd() {
+            @Override
+            public void onAnimationEnd() {
+                Toast.makeText(SvgTestActivity.this, "pathView动画结束", Toast.LENGTH_SHORT).show();
+            }
+        }).
 //        pathView.getSequentialPathAnimator().
         delay(100).
                 duration(1500).
                 interpolator(new AccelerateDecelerateInterpolator()).
                 start();
+
         pathView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
