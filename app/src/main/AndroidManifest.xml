@@ -67,7 +67,9 @@
         <activity
             android:name=".activity.CollapsingToolbarTestActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".activity.SvgTestActivity"></activity>
+        <activity android:name=".activity.SvgTestActivity" />
+        <activity android:name=".activity.CustomViewActivity" />
+        <activity android:name=".activity.XfreModeTestActivity"></activity>
     </application>
 
 </manifest>

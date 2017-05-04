@@ -31,6 +31,7 @@ dependencies {
     compile project(':library')
     //广告轮播库
     //leakcanary
+    //svg函数库
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.jakewharton:butterknife:8.0.1'
     compile 'com.android.support:design:25.2.0'
@@ -45,13 +46,13 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.jrummyapps:animated-svg-view:1.0.1'
+    compile 'com.eftimoff:android-pathview:1.0.8@aar'
+    compile 'com.android.support:animated-vector-drawable:${latest_version}'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-    //svg函数库
-    compile 'com.jrummyapps:animated-svg-view:1.0.1'
-    compile 'com.eftimoff:android-pathview:1.0.8@aar'
-    compile 'com.android.support:animated-vector-drawable:${latest_version}'
 }
