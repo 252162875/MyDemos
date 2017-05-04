@@ -1,9 +1,13 @@
 package kx.rnd.com.permissionstest.activity;
 
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -13,12 +17,24 @@ import com.jrummyapps.android.widget.AnimatedSvgView;
 import kx.rnd.com.permissionstest.R;
 import kx.rnd.com.permissionstest.SVG;
 
+/**
+ * 用AnimatedSvgView + xml文件只需要得到path做成xml就OK了，但是不能控制进度
+ * 用PathView + svg文件需要完整的svg文件，可以控制进度，兼容性和适配有待测试
+ * 用ImageView + xml文件 + 官方objectAnimator + animated-vector 只支持api21+ 并且效果不是理想绘制轮廓的效果
+ * 这里解释一下这几个属性；
+ * android:width=”600dp” 实际显示的宽度为600dp
+ * android:height=”600dp” 实际显示的高度为600dp
+ * android:viewportHeight=”512” 矢量限定的宽度为512，这没有单位；
+ * android:viewportWidth=”512” 矢量限定的高度为512
+ * 其实以上两个属性，就是我们 svg 图片的宽高
+ **/
 public class SvgTestActivity extends AppCompatActivity {
 
     private AnimatedSvgView svgView;
     private int index = -1;
     private PathView pathView;
     private SeekBar seekbar;
+    private ImageView iv_svg_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +43,14 @@ public class SvgTestActivity extends AppCompatActivity {
         svgView = (AnimatedSvgView) findViewById(R.id.animated_svg_view);
         pathView = (PathView) findViewById(R.id.pathView);
         seekbar = (SeekBar) findViewById(R.id.seekbar);
+        iv_svg_2 = (ImageView) findViewById(R.id.iv_svg_2);
+        animateImage();
+        iv_svg_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animateImage();
+            }
+        });
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -127,5 +151,18 @@ public class SvgTestActivity extends AppCompatActivity {
         svgView.setTraceColors(svg.colors);
         svgView.rebuildGlyphData();
         svgView.start();
+    }
+
+    // 只支持5.0以上.
+    private void animateImage() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // 获取动画效果
+            AnimatedVectorDrawable mAnimatedVectorDrawable = (AnimatedVectorDrawable)
+                    ContextCompat.getDrawable(SvgTestActivity.this, R.drawable.anim_form);
+            iv_svg_2.setImageDrawable(mAnimatedVectorDrawable);
+            if (mAnimatedVectorDrawable != null) {
+                mAnimatedVectorDrawable.start();
+            }
+        }
     }
 }
