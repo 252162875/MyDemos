@@ -49,7 +49,6 @@ dependencies {
     compile 'com.jrummyapps:animated-svg-view:1.0.1'
     compile 'com.eftimoff:android-pathview:1.0.8@aar'
     compile 'com.android.support:animated-vector-drawable:${latest_version}'
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
