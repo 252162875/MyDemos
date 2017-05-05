@@ -133,10 +133,10 @@ public class XferModeTestView extends View {
 //        canvas.drawText(mString, paddingLeft, getTop() + paddingTop, mPaint);//getTop() + paddingTop浮动的话文字将会做到紧贴控件顶部的效果
         canvas.translate(0, mTextHeight + paddingTop);
         //画边框
-        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStyle(Paint.Style.STROKE);//画边框选择不填充的模式
         mPaint.setColor(0xff00ff00);
-        canvas.drawRect(strokeWidth / 2, strokeWidth / 2, getRight() - getLeft() - strokeWidth / 2, getBottom() - strokeWidth / 2 - mTextFloat - getTop(), mPaint);//画笔中心在stroke的中心所以这里strokeWidth / 2
-        mPaint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(strokeWidth / 2 - paddingLeft, strokeWidth / 2 - paddingRight, getRight() - getLeft() - strokeWidth / 2 - paddingTop, getBottom() - getTop() - strokeWidth / 2 - mTextHeight - paddingBottom, mPaint);//画笔中心在stroke的中心所以这里strokeWidth / 2
+        mPaint.setStyle(Paint.Style.FILL);//画完边框再次把模式改为填充，因为接下来要填充的画圆和矩形
         //画圆
         mPaint.setColor(circleColor);
         float left = circleRadius + strokeWidth;

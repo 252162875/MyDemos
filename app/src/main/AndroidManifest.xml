@@ -69,7 +69,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".activity.SvgTestActivity" />
         <activity android:name=".activity.CustomViewActivity" />
-        <activity android:name=".activity.XfreModeTestActivity"></activity>
+        <activity android:name=".activity.XfreModeTestActivity" />
+        <activity android:name=".activity.CustomViewOneActivity"></activity>
     </application>
 
 </manifest>

@@ -23,12 +23,16 @@ public class CustomViewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_xfremode_test})
+    @OnClick({R.id.btn_xfremode_test,R.id.btn_customview_day_one})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_xfremode_test:
                 Intent xfreModeTestIntent = new Intent(CustomViewActivity.this, XfreModeTestActivity.class);
                 startActivity(xfreModeTestIntent);
+                break;
+            case R.id.btn_customview_day_one:
+                Intent customViewOneIntent = new Intent(CustomViewActivity.this, CustomViewOneActivity.class);
+                startActivity(customViewOneIntent);
                 break;
         }
     }
