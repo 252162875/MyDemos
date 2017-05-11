@@ -10,12 +10,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
@@ -29,7 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import kx.rnd.com.permissionstest.R;
 
-public class MainActivity extends Activity implements LocationSource {
+public class MainActivity extends Activity implements LocationSource, AMapLocationListener {
     final public static int REQUEST_CODE_ASK_CALL_PHONE = 123;
     String mMobile = "";
     //    @BindView(R.id.tv_text)
@@ -39,6 +45,13 @@ public class MainActivity extends Activity implements LocationSource {
     @BindView(R.id.btn_nextpage)
     Button btnNextpage;
     private AMap aMap;
+    private boolean isFirst = true;
+    OnLocationChangedListener mListener;
+    AMapLocationClient mlocationClient;
+    AMapLocationClientOption mLocationOption;
+    private MarkerOptions markerOption;
+    private Marker marker;
+    private LatLng latLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +61,20 @@ public class MainActivity extends Activity implements LocationSource {
         tvText = (TextView) findViewById(R.id.tv_text);
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，实现地图生命周期管理
         mMapView.onCreate(savedInstanceState);
+        //声明mLocationOption对象
+        AMapLocationClient mlocationClient = new AMapLocationClient(this);
+        //初始化定位参数
+        AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
+        //设置定位监听
+        mlocationClient.setLocationListener(this);
+        //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(2000);
+        //设置定位参数
+        mlocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mlocationClient.startLocation();
         //初始化地图变量
         if (aMap == null) {
             aMap = mMapView.getMap();
@@ -55,15 +82,15 @@ public class MainActivity extends Activity implements LocationSource {
             aMap.setTrafficEnabled(true);
             UiSettings uiSettings = aMap.getUiSettings();
             uiSettings.setCompassEnabled(true);//指南针
-//            aMap.setLocationSource(this);// 设置定位监听
+            aMap.setLocationSource(this);// 设置定位监听
             uiSettings.setMyLocationButtonEnabled(true); // 显示默认的定位按钮
             aMap.setMyLocationEnabled(true);// 可触发定位并显示定位层
             uiSettings.setAllGesturesEnabled(true);
             LatLng latLng = new LatLng(39.906901, 116.397972);
-            MarkerOptions markerOption = new MarkerOptions();
+            markerOption = new MarkerOptions();
             LatLng latLng1 = new LatLng(34.341568, 108.940174);
             markerOption.position(latLng1);
-//            markerOption.title("西安市").snippet("西安市：34.341568, 108.940174");
+            markerOption.title("西安市").snippet("西安市：34.341568, 108.940174");
 
             markerOption.draggable(true);
             markerOption.icon(
@@ -73,7 +100,7 @@ public class MainActivity extends Activity implements LocationSource {
                                     R.mipmap.ic_launcher)));
             // 将Marker设置为贴地显示，可以双指下拉看效果
             markerOption.setFlat(true);
-            final Marker marker = aMap.addMarker(markerOption);
+            marker = aMap.addMarker(markerOption);
             AMap.OnMarkerClickListener listener = new AMap.OnMarkerClickListener() {
 
                 @Override
@@ -170,12 +197,19 @@ public class MainActivity extends Activity implements LocationSource {
 
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
-        Toast.makeText(this, "activate", Toast.LENGTH_SHORT).show();
+        //然后可以移动到定位点,使用animateCamera就有动画效果
+        aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
     }
 
     @Override
     public void deactivate() {
         Toast.makeText(this, "deactivate", Toast.LENGTH_SHORT).show();
+        mListener = null;
+        if (mlocationClient != null) {
+            mlocationClient.stopLocation();
+            mlocationClient.onDestroy();
+        }
+        mlocationClient = null;
     }
 
     @OnClick(R.id.btn_nextpage)
@@ -184,4 +218,37 @@ public class MainActivity extends Activity implements LocationSource {
         startActivity(intent);
     }
 
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if (amapLocation != null) {
+            if (amapLocation.getErrorCode() == 0) {
+                //定位成功回调信息，设置相关消息
+
+                //取出经纬度
+                latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
+
+                //添加Marker显示定位位置
+                if (marker == null) {
+                    //如果是空的添加一个新的,icon方法就是设置定位图标，可以自定义
+                    marker = aMap.addMarker(new MarkerOptions()
+                            .position(latLng)
+                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)));
+                } else {
+                    //已经添加过了，修改位置即可
+                    marker.setPosition(latLng);
+                }
+
+                if (isFirst) {
+                    isFirst = false;
+                    aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                }
+
+            } else {
+                //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                Log.e("AmapError", "location Error, ErrCode:"
+                        + amapLocation.getErrorCode() + ", errInfo:"
+                        + amapLocation.getErrorInfo());
+            }
+        }
+    }
 }

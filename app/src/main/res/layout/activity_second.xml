@@ -68,5 +68,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="自定义View" />
+        <Button
+            android:id="@+id/btn_baidu_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="百度地图" />
     </LinearLayout>
 </ScrollView>

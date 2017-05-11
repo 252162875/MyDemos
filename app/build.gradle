@@ -1,15 +1,21 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 android {
+    signingConfigs {
+        mydemos {
+            keyAlias 'android'
+            keyPassword 'android'
+            storeFile file('C:/Users/Administrator/Desktop/MyDemosKeyStore.jks')
+            storePassword 'android'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
-
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
     }
-
     defaultConfig {
         applicationId "kx.rnd.com.permissionstest"
         minSdkVersion 15
@@ -21,6 +27,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.mydemos
+        }
+        debug {
+            signingConfig signingConfigs.mydemos
         }
     }
 }
@@ -30,7 +40,9 @@ dependencies {
     compile files('libs/AMap3DMap_3.4.0_AMapNavi_1.9.2_AMapSearch_3.4.0_AMapLocation_2.9.0_20160906.jar')
     compile project(':library')
     //广告轮播库
+
     //leakcanary
+
     //svg函数库
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.jakewharton:butterknife:8.0.1'
@@ -48,10 +60,18 @@ dependencies {
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.jrummyapps:animated-svg-view:1.0.1'
     compile 'com.eftimoff:android-pathview:1.0.8@aar'
-    compile 'com.android.support:animated-vector-drawable:${latest_version}'
+    compile 'com.android.support:support-vector-drawable:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    compile files('libs/baidumapapi_map_v4_3_1.jar')
+    compile files('libs/locSDK_6.13.jar')
+    compile files('libs/baidumapapi_util_v4_3_1.jar')
+    compile files('libs/baidumapapi_search_v4_3_1.jar')
+    compile files('libs/baidumapapi_radar_v4_3_1.jar')
+    compile files('libs/baidumapapi_cloud_v4_3_1.jar')
+    compile files('libs/baidumapapi_base_v4_3_1.jar')
 }
